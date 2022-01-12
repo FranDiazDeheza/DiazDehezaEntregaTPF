@@ -1,6 +1,6 @@
-body{
-    background-color:#abb2b9
-}
+body {
+    background-color: #DBF9FC;
+    }
 
 header, .alert {
     z-index: 100;
@@ -60,4 +60,19 @@ desc{
 .aca{ 
     width : 40%; 
     height : 50%
+}
+
+.mytab{
+    text-align: center;
+
+}
+
+.productos{
+    text-align: center;
+
+}
+
+#map {
+	height: 500px;
+	width: 100%;
 }
