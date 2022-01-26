@@ -53,7 +53,7 @@ function addItemCarrito(newItem){
     carrito.push(newItem)
     renderCarrito()
  }
-
+ 
  function renderCarrito(){
     tbody.innerHTML = ''
     carrito.map(item => {
@@ -61,7 +61,7 @@ function addItemCarrito(newItem){
       tr.classList.add('ItemCarrito')
       const Content = `
       
-      <th scope="row">1</th>
+      <th scope="row">${"Libro"}</th>
       <td class="table__productos">
         <img src=${item.img}  alt="">
         <h6 class="title">${item.title}</h6>
@@ -176,7 +176,7 @@ function CarritoTotal(){
     
     
     $('#boton1').on('click', () => {
-       $('#divLibs').html(` <table class="table table-hover">
+       $('#divLibs').html(` <table class="table table-hover text-white">
        <thead>
          <tr>
            <th scope="col">#</th>
@@ -194,16 +194,24 @@ function CarritoTotal(){
     
     let libroStorage = JSON.parse(localStorage.getItem('libroDato'))   
     
-    libroStorage.forEach((librosEnArray, indice) => { 
-        $('#table-body').append(`
+    if (libroStorage && libroStorage.length) {
+      libroStorage.forEach((librosEnArray, indice) => {
+        $("#table-body").append(`
         <tr class="table-dark">
-        <th scope="row">${indice+1}</th>
+        <th scope="row">${indice + 1}</th>
         <td>${librosEnArray.titulo}</td>
         <td>${librosEnArray.autor}</td>
         <td>${librosEnArray.año}</td>
       </tr>
-        `)
-    });
+      `);
+      });
+    } else {
+      $("#table-body").append(`
+        <tr class="table-dark">
+        <th scope="row" colspan="4">No se han cargado libros</th>
+      </tr>>
+      `);
+    }
     
   
     })
@@ -221,7 +229,7 @@ function CarritoTotal(){
    
 
     $('#btn1').on("click",function(){
-      $("#aca").prepend('<p id="p1"> No hay libros gratis,acabas de ser rick rolled </p>');
+      $("#aca").prepend('<p style="color: #fff;"> No hay libros gratis,acabas de ser rick rolled </p>');
     }
     )
 
@@ -231,7 +239,7 @@ $('#finalizar').on("click",()=>{
       console.log(data,estado);
       if(estado){
         $('#carrito').empty();
-        $('#carrito').append('<h6> Gracias por su compra </h6>');
+        $('#carrito').append('<h6 style="color: #fff; font-size:75px"> Gracias por su compra! </h6> <br> <h7 style="color: #fff; font-size:15px"><ins> Refresque la página para realizar una nueva compra </ins> </h7>');
         carrito = []
         localStorage.clear()
         CarritoTotal()

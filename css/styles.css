@@ -1,5 +1,6 @@
 body {
-    background-color: #DBF9FC;
+    background-color: #212529 !important;
+    font-family: 'Roboto', sans-serif !important;
     }
 
 header, .alert {
@@ -14,9 +15,7 @@ header, .alert {
     text-align: center;
 }
 
-.description:hover {
-    height: 80px;
-}
+
 
 .carrito{
    min-height:  70vh;
@@ -76,3 +75,14 @@ desc{
 	height: 500px;
 	width: 100%;
 }
+
+.card-libros {
+    border: 1px solid #fff !important;
+    width: 20rem;
+}
+
+.card-libros img {
+    height: 500px;
+    width: 100%
+}
+
