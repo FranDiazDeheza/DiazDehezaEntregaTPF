@@ -264,6 +264,9 @@ function iniciarMap(){
     map: map
   });
 }
+window.onload = function () {
+    document.getElementById("productos-tab").click();
+};
 
 
    
