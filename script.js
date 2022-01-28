@@ -53,14 +53,14 @@ function addItemCarrito(newItem){
     carrito.push(newItem)
     renderCarrito()
  }
- 
+
  function renderCarrito(){
     tbody.innerHTML = ''
     carrito.map(item => {
       const tr = document.createElement('tr')
       tr.classList.add('ItemCarrito')
       const Content = `
-      
+
       <th scope="row">${"Libro"}</th>
       <td class="table__productos">
         <img src=${item.img}  alt="">
@@ -92,10 +92,10 @@ function CarritoTotal(){
       const precio = Number(item.precio.replace("$", ''))
       Total = Total + precio*item.cantidad
     })
-  
+
     itemCartTotal.innerHTML = `Total $ ${Total}`
     addLocalStorage()
-    
+
   }
 
   function removeItemCarrito(e){
@@ -103,7 +103,7 @@ function CarritoTotal(){
     const tr = buttonDelete.closest(".ItemCarrito")
     const title = tr.querySelector('.title').textContent;
     for(let i=0; i<carrito.length ; i++){
-  
+
       if(carrito[i].title.trim() === title.trim()){
         carrito.splice(i, 1)
       }
@@ -115,11 +115,11 @@ function CarritoTotal(){
       alert.classList.add('remove')
     }, 2000)
       alert.classList.remove('remove')
-  
+
       tr.remove()
       CarritoTotal()
   }
-  
+
   function sumaCantidad(e){
     const sumaInput  = e.target
     const tr = sumaInput.closest(".ItemCarrito")
@@ -136,14 +136,7 @@ function CarritoTotal(){
   function addLocalStorage(){
     localStorage.setItem('carrito', JSON.stringify(carrito))
   }
-  
-  window.onload = function(){
-    const storage = JSON.parse(localStorage.getItem('carrito'));
-    if(storage){
-      carrito = storage;
-      renderCarrito()
-    }
-  }
+
 
   let libros = []
 
@@ -155,26 +148,26 @@ function CarritoTotal(){
       this.año = año
     }
   }
-  
-  
-  
+
+
+
   $(() => {
       $('#formLibro').submit((e) => {
         e.preventDefault()
-  
-  
-   
-    
-    
+
+
+
+
+
         let libro = new Libro($('#titulo').val(),$('#autor').val(),$('#año').val())
         libros.push(libro)
-  
+
         localStorage.setItem('libroDato',JSON.stringify(libros))
         $('#formAuto').trigger("reset")
       })
-    
-    
-    
+
+
+
     $('#boton1').on('click', () => {
        $('#divLibs').html(` <table class="table table-hover text-white">
        <thead>
@@ -186,14 +179,14 @@ function CarritoTotal(){
          </tr>
        </thead>
        <tbody id="table-body">
-   
+
        </tbody>
      </table>
      `)
-  
-    
-    let libroStorage = JSON.parse(localStorage.getItem('libroDato'))   
-    
+
+
+    let libroStorage = JSON.parse(localStorage.getItem('libroDato'))
+
     if (libroStorage && libroStorage.length) {
       libroStorage.forEach((librosEnArray, indice) => {
         $("#table-body").append(`
@@ -212,10 +205,10 @@ function CarritoTotal(){
       </tr>>
       `);
     }
-    
-  
+
+
     })
-    
+
     })
 
     $('#btn1').on("click",function(){
@@ -225,8 +218,8 @@ function CarritoTotal(){
      $('#btn1').on("click",function(){
       $("#fotox").prepend('<img id="image1" src="./img/nev.gif" style = "width : 40%","height : 50%">');
     }
-    ) 
-   
+    )
+
 
     $('#btn1').on("click",function(){
       $("#aca").prepend('<p style="color: #fff;"> No hay libros gratis,acabas de ser rick rolled </p>');
@@ -250,7 +243,7 @@ $('#finalizar').on("click",()=>{
 
 
 
-})    
+})
 
 
 function iniciarMap(){
@@ -264,9 +257,12 @@ function iniciarMap(){
     map: map
   });
 }
+
 window.onload = function () {
-    document.getElementById("productos-tab").click();
-};
-
-
-   
+  document.getElementById("productos-tab").click();
+  const storage = JSON.parse(localStorage.getItem('carrito'));
+  if(storage){
+    carrito = storage;
+    renderCarrito()
+  }
+}
